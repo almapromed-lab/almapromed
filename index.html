@@ -1,0 +1,1539 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ALMA Promed: soporte administrativo remoto para clínicas, consultorios y centros de estética.">
+  <meta name="theme-color" content="#0f3c3a">
+  <title>ALMA Promed | Soporte administrativo para clínicas</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    
+    /* ========================================
+   SLIDER DE IMÁGENES: SECCIÓN EQUIPO
+   ======================================== */
+
+.story-image.team-slider {
+  position: relative;
+  overflow: hidden;
+  min-height: 600px;
+  padding: 0;
+}
+
+.team-slider-track {
+  display: flex;
+  width: 100%;
+  height: 600px;
+  transition: transform 0.7s ease-in-out;
+  will-change: transform;
+}
+
+.team-slide {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 600px;
+}
+
+.team-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Capa sutil para dar una apariencia más premium */
+.team-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 42, 66, 0.03) 45%,
+    rgba(6, 42, 66, 0.25) 100%
+  );
+}
+
+/* Flechas */
+.team-slider-control {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: #0B3C5D;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 8px 20px rgba(6, 42, 66, 0.18);
+  cursor: pointer;
+  font-size: 2rem;
+  line-height: 1;
+  transform: translateY(-50%);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.team-slider-control:hover {
+  color: #FFFFFF;
+  background: #0284C7;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.team-slider-prev {
+  left: 1rem;
+}
+
+.team-slider-next {
+  right: 1rem;
+}
+
+/* Puntos de navegación */
+.team-slider-dots {
+  position: absolute;
+  z-index: 3;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  display: flex;
+  gap: 0.45rem;
+}
+
+.team-slider-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 1px solid #FFFFFF;
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  transition: width 0.2s ease, background 0.2s ease;
+}
+
+.team-slider-dot.is-active {
+  width: 25px;
+  background: #FFFFFF;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .story-image.team-slider,
+  .team-slider-track,
+  .team-slide {
+    min-height: 500px;
+    height: 500px;
+  }
+}
+
+/* Celular */
+@media (max-width: 700px) {
+  .story-image.team-slider,
+  .team-slider-track,
+  .team-slide {
+    min-height: 430px;
+    height: 430px;
+  }
+
+  .team-slider-control {
+    display: none;
+  }
+
+  .team-slider-dots {
+    right: 1rem;
+    bottom: 1rem;
+  }
+}
+
+    /* ========================================
+   PREGUNTAS FRECUENTES
+   ======================================== */
+
+.faq-section {
+  background: var(--mint-light);
+}
+
+.faq-list {
+  border-top: 1px solid var(--line);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-question {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.45rem 0;
+  border: 0;
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: clamp(1rem, 1.45vw, 1.16rem);
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.faq-question:hover {
+  color: var(--coral);
+}
+
+.faq-icon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink);
+  font-size: 1.45rem;
+  font-weight: 400;
+  line-height: 1;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.faq-item.is-open .faq-icon {
+  border-color: var(--coral);
+  color: #FFFFFF;
+  background: var(--coral);
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.32s ease;
+}
+
+.faq-answer-content {
+  min-height: 0;
+  overflow: hidden;
+  max-width: 680px;
+  padding-right: 3rem;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.75;
+}
+
+.faq-item.is-open .faq-answer {
+  grid-template-rows: 1fr;
+}
+
+.faq-item.is-open .faq-answer-content {
+  padding-bottom: 1.5rem;
+}
+
+@media (max-width: 700px) {
+  .faq-question {
+    gap: 1rem;
+    padding: 1.2rem 0;
+  }
+
+  .faq-answer-content {
+    padding-right: 0.25rem;
+  }
+
+  .faq-icon {
+    width: 30px;
+    height: 30px;
+    flex-basis: 30px;
+  }
+}
+/* ========================================
+   LOGO: SOLO IMAGEN, SIN ICONO NI TEXTO
+   ======================================== */
+
+.header .brand.brand-logo {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+
+  /* Tamaño del contenedor del logo */
+  flex: 0 0 260px !important;
+  width: 260px !important;
+  max-width: 260px !important;
+
+  height: 82px !important;
+  max-height: 82px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* La imagen ocupa todo el alto del contenedor */
+.header .brand.brand-logo img {
+  display: auto !important;
+
+  width: auto !important;
+  max-width: none !important;
+
+  height: auto !important;
+  max-height: none !important;
+
+  object-fit: contain !important;
+  object-position: left center !important;
+}
+
+/* Logo en celular */
+@media (max-width: 700px) {
+  .header .brand.brand-logo {
+    flex: 0 0 175px !important;
+    width: 175px !important;
+    max-width: 175px !important;
+
+    height: 60px !important;
+max-height: 60px !important;
+  }
+}
+
+  .header .brand.brand-logo img,
+  .header img[alt="ALMA Promed"] {
+  /*max-width: 135px !important;*/
+  /*height: 42px !important;*/
+  max-height: 200px !important;
+  }
+
+    /* Fotos de las fundadoras */
+.leader-photo {
+  display: block;
+  width: 100%;
+  max-width: 180px;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  margin: 0 0 1rem;
+  border: 3px solid var(--mint);
+  border-radius: 18px;
+  object-fit: cover;
+  object-position: center top;
+  box-shadow: 0 10px 22px rgba(6, 42, 66, 0.14);
+}
+
+/* Mantiene ambas fotos alineadas y proporcionadas */
+.leader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* En celular, las fotos ocupan un tamaño cómodo */
+@media (max-width: 700px) {
+  .leader-photo {
+    max-width: 160px;
+  }
+}
+    :root {
+    /* Azul institucional */
+    --ink: #0B3C5D;
+    --ink-deep: #062A42;
+
+    /* Fondos blanco y gris claro */
+    --cream: #F8FAFC;
+    --paper: #FFFFFF;
+
+    /* Celestes */
+    --mint: #DFF3FA;
+    --mint-light: #EEF9FD;
+
+    /* Acentos azules */
+    --coral: #0284C7;
+    --yellow: #7DD3FC;
+
+    /* Textos */
+    --text: #1E3A4C;
+    --muted: #64748B;
+
+    /* Bordes */
+    --line: rgba(11, 60, 93, 0.16);
+
+    /* Diseño */
+    --radius: 26px;
+    --container: 1280px;
+    --shadow: 0 22px 60px rgba(6, 42, 66, 0.15);
+  }
+
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 88px;
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--text);
+      background: var(--cream);
+      font-family: "DM Sans", Arial, sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    .container {
+      width: min(var(--container), calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      margin: 0 0 1.1rem;
+      color: var(--ink);
+      font-family: "DM Mono", monospace;
+      font-size: .76rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 30px;
+      height: 1px;
+      background: currentColor;
+      content: "";
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1, h2 {
+      color: var(--ink);
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 600;
+      letter-spacing: -.045em;
+      line-height: .98;
+    }
+
+    h1 { font-size: clamp(3.3rem, 7vw, 7.3rem); }
+    h2 { font-size: clamp(2.45rem, 5vw, 5.2rem); }
+    h3 { color: var(--ink); font-size: 1.25rem; line-height: 1.2; }
+    p { color: var(--muted); }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .7rem;
+      min-height: 52px;
+      padding: .85rem 1.35rem;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform .2s ease, background .2s ease, color .2s ease;
+    }
+
+    .button:hover { transform: translateY(-3px); }
+
+    .button-dark {
+      color: var(--paper);
+      background: var(--ink);
+    }
+
+    .button-dark:hover { background: var(--coral); }
+
+    .button-light {
+      color: var(--ink);
+      background: var(--paper);
+      border: 1px solid rgba(255,255,255,.55);
+    }
+
+    .arrow { font-size: 1.3rem; line-height: 0; }
+
+    /* Header */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(247, 245, 240, .94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .header-inner {
+      display: flex;
+      min-height: 78px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      color: var(--ink);
+      font-size: 1.08rem;
+      font-weight: 700;
+      letter-spacing: -.045em;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--paper);
+      background: var(--ink);
+      font-size: 1.05rem;
+    }
+
+    .brand span { color: var(--coral); }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      color: var(--text);
+      font-size: .9rem;
+      font-weight: 600;
+    }
+
+    .nav a:hover { color: var(--coral); }
+    .menu-button { display: none; }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(3.7rem, 7vw, 7rem) 0 clamp(4rem, 7vw, 7rem);
+      background: var(--cream);
+    }
+
+    .hero::before {
+      position: absolute;
+      top: -160px;
+      right: -130px;
+      width: 470px;
+      height: 470px;
+      border-radius: 50%;
+      background: var(--yellow);
+      content: "";
+      opacity: .78;
+    }
+
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.07fr) minmax(360px, .93fr);
+      align-items: end;
+      gap: clamp(2rem, 6vw, 6.5rem);
+    }
+
+    .hero-title { max-width: 770px; margin-bottom: 1.6rem; }
+    .hero-title em {
+  color: var(--coral);
+  font-style: normal;
+}
+
+    .hero-copy {
+      max-width: 550px;
+      margin-bottom: 2rem;
+      font-size: clamp(1.05rem, 1.6vw, 1.24rem);
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; }
+
+    .hero-image-card {
+      position: relative;
+      min-height: 550px;
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background: var(--mint);
+    }
+
+    .hero-image-card img {
+      width: 100%;
+      height: 550px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero-image-label {
+  position: absolute;
+  right: 1.3rem;
+  bottom: 1.3rem;
+  left: 1.3rem;
+  padding: 1.1rem 1.2rem;
+  border-radius: 16px;
+  color: #FFFFFF;
+  background: #0B3C5D;
+  border: 1px solid rgba(125, 211, 252, 0.35);
+  box-shadow: 0 10px 25px rgba(6, 42, 66, 0.22);
+  font-size: .93rem;
+  font-weight: 600;
+    }
+
+    .hero-stamp {
+      position: absolute;
+      top: -28px;
+      left: -26px;
+      display: grid;
+      width: 126px;
+      height: 126px;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--ink);
+      background: var(--yellow);
+      font-family: "DM Mono", monospace;
+      font-size: .72rem;
+      font-weight: 500;
+      line-height: 1.35;
+      text-align: center;
+      text-transform: uppercase;
+      transform: rotate(-12deg);
+    }
+
+    /* Trust band */
+    .trust-band {
+      padding: 1.25rem 0;
+      color: var(--paper);
+      background: var(--ink);
+    }
+
+    .trust-items {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .trust-item {
+      padding-right: 1rem;
+      border-right: 1px solid rgba(255,255,255,.23);
+    }
+
+    .trust-item:last-child { border-right: 0; }
+    .trust-item strong { display: block; color: var(--yellow); font-family: "Playfair Display", Georgia, serif; font-size: 2rem; line-height: 1; }
+    .trust-item span { display: block; margin-top: .35rem; color: rgba(255,255,255,.76); font-size: .82rem; }
+
+    /* Shared sections */
+    .section { padding: clamp(4.5rem, 9vw, 9rem) 0; }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: .78fr 1.22fr;
+      gap: clamp(2.5rem, 8vw, 9rem);
+      align-items: start;
+    }
+
+    .section-intro { position: sticky; top: 115px; }
+    .section-intro p { max-width: 340px; font-size: 1.03rem; }
+
+    /* Services */
+    .services-list { border-top: 1px solid var(--line); }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 82px 1fr auto;
+      gap: 1.3rem;
+      align-items: center;
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .service-number {
+      color: var(--coral);
+      font-family: "DM Mono", monospace;
+      font-size: .86rem;
+    }
+
+    .service-row h3 { margin: 0 0 .4rem; font-family: "Playfair Display", Georgia, serif; font-size: clamp(1.35rem, 2vw, 1.75rem); }
+    .service-row p { max-width: 470px; margin: 0; font-size: .95rem; }
+
+    .round-arrow {
+      display: grid;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--ink);
+      font-size: 1.45rem;
+    }
+
+    /* Difference */
+    .difference { color: var(--paper); background: var(--ink); }
+    .difference h2, .difference h3 { color: var(--paper); }
+    .difference .eyebrow { color: var(--yellow); }
+    .difference .section-intro p { color: rgba(255,255,255,.7); }
+
+    .advantage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+
+    .advantage-card {
+      min-height: 245px;
+      padding: 1.5rem;
+      border-radius: 20px;
+      color: var(--ink);
+      background: var(--mint);
+    }
+
+    .advantage-card:nth-child(2) { background: var(--yellow); }
+    .advantage-card:nth-child(3) { background: var(--paper); }
+    .advantage-card:nth-child(4) { color: var(--paper); background: var(--coral); }
+    .advantage-card:nth-child(4) h3, .advantage-card:nth-child(4) p { color: var(--paper); }
+
+    .advantage-icon { display: block; margin-bottom: 2.8rem; font-size: 1.8rem; }
+    .advantage-card h3 { margin-bottom: .65rem; font-family: "Playfair Display", Georgia, serif; font-size: 1.55rem; }
+    .advantage-card p { margin: 0; font-size: .91rem; }
+
+    /* Team / story */
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(1.5rem, 5vw, 5rem);
+      align-items: center;
+    }
+
+    .story-image {
+      position: relative;
+      min-height: 600px;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: var(--mint);
+    }
+
+    .story-image img {
+      width: 100%;
+      height: 600px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .story-copy { max-width: 560px; }
+    .story-copy h2 { margin-bottom: 1.35rem; }
+    .story-copy p { font-size: 1.05rem; }
+
+    .leaders {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .leader { padding-top: 1rem; border-top: 1px solid var(--line); }
+    .leader strong { display: block; color: var(--ink); font-family: "Playfair Display", Georgia, serif; font-size: 1.35rem; }
+    .leader span { color: var(--coral); font-size: .84rem; font-weight: 700; }
+
+    /* CTA */
+    .cta-wrap { padding-bottom: clamp(4.5rem, 8vw, 8rem); }
+
+    .cta {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(2.3rem, 6vw, 5rem);
+      border-radius: var(--radius);
+      color: var(--paper);
+      background: var(--coral);
+    }
+
+    .cta::after {
+      position: absolute;
+      right: -110px;
+      bottom: -160px;
+      width: 480px;
+      height: 480px;
+      border: 1px solid rgba(255,255,255,.48);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .cta > div { position: relative; z-index: 1; max-width: 750px; }
+    .cta h2 { margin-bottom: 1.1rem; color: var(--paper); }
+    .cta p { max-width: 570px; color: rgba(255,255,255,.84); font-size: 1.08rem; }
+    .cta .button { margin-top: 1rem; }
+
+    /* Footer */
+    footer { padding: 2.2rem 0; border-top: 1px solid var(--line); }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .footer-social { display: flex; gap: 1rem; color: var(--ink); font-weight: 700; }
+
+    /* Tablet */
+    @media (max-width: 1024px) {
+      .nav { display: none; }
+      .menu-button {
+        display: grid;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        color: var(--ink);
+        background: transparent;
+        cursor: pointer;
+        font-size: 1.2rem;
+      }
+
+      .nav.is-open {
+        position: absolute;
+        top: 78px;
+        right: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: .7rem 24px 1rem;
+        border-bottom: 1px solid var(--line);
+        background: var(--cream);
+        box-shadow: 0 18px 30px rgba(8,44,42,.08);
+      }
+
+      .nav.is-open a { padding: .8rem 0; }
+      .hero-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .hero-image-card, .hero-image-card img { min-height: 470px; height: 470px; }
+      .trust-items { grid-template-columns: repeat(2, 1fr); row-gap: 1.4rem; }
+      .trust-item:nth-child(2) { border-right: 0; }
+      .section-grid { gap: 3rem; }
+    }
+
+    /* Mobile */
+    @media (max-width: 700px) {
+      .container { width: min(100% - 32px, var(--container)); }
+      .header-inner { min-height: 68px; }
+      .nav.is-open { top: 68px; padding-right: 16px; padding-left: 16px; }
+      .hero::before { top: -120px; right: -180px; width: 380px; height: 380px; }
+      .hero-grid, .section-grid, .story-grid { grid-template-columns: 1fr; }
+      .hero-image-card { margin-top: .8rem; }
+      .hero-image-card, .hero-image-card img { min-height: 410px; height: 410px; }
+      .hero-stamp { top: -18px; left: -13px; width: 100px; height: 100px; font-size: .6rem; }
+      .trust-items { grid-template-columns: 1fr 1fr; }
+      .trust-item { padding-right: .6rem; }
+      .trust-item strong { font-size: 1.6rem; }
+      .section-intro { position: static; }
+      .section-intro p { max-width: none; }
+      .service-row { grid-template-columns: 52px 1fr; gap: .8rem; }
+      .service-row .round-arrow { display: none; }
+      .advantage-grid, .leaders { grid-template-columns: 1fr; }
+      .advantage-card { min-height: auto; }
+      .advantage-icon { margin-bottom: 1.7rem; }
+      .story-image, .story-image img { min-height: 430px; height: 430px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    } /* ========================================
+   TIPOGRAFÍA ÚNICA: INTER
+   ======================================== */
+
+/* Toda la página utiliza Inter */
+body,
+button,
+input,
+textarea,
+select,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span,
+strong,
+small,
+.eyebrow,
+.service-number,
+.hero-stamp,
+.brand,
+.button {
+  font-family: "Inter", Arial, sans-serif !important;
+}
+
+/* Títulos: mismo estilo, solo cambia el tamaño */
+h1,
+h2 {
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+}
+
+/* Título principal de la portada: más pequeño */
+.hero-title {
+  font-size: clamp(2.5rem, 4.7vw, 4.8rem) !important;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+}
+
+/* Títulos de secciones: proporción más equilibrada */
+h2 {
+  font-size: clamp(2rem, 3.5vw, 3.4rem);
+}
+
+/* Títulos internos de tarjetas y servicios */
+h3 {
+  font-family: "Inter", Arial, sans-serif !important;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+/* Quita la cursiva del título principal */
+.hero-title em {
+  font-style: normal;
+} /* ========================================
+   VISIBILIDAD: SECCIÓN "EL MODELO ALMA"
+   ======================================== */
+
+/* Fondo azul profundo para toda la sección */
+.difference {
+  background: #0b6baa !important;
+  color: #97b65d;
+}
+
+/* Título y texto de la columna izquierda */
+.difference .section-intro h2 {
+  color: #ffffff !important;
+}
+
+.difference .section-intro p {
+  color: rgba(230, 240, 250, 0.808) !important;
+}
+
+.difference .section-intro .eyebrow {
+  color: #e9f3fd !important;
+}
+
+/* Tarjetas o burbujas: texto oscuro en fondos claros */
+.difference .advantage-card {
+  color: #1d50db !important;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.difference .advantage-card h3 {
+  color: #0B3C5D !important;
+}
+
+.difference .advantage-card p {
+  color: #57a2d1 !important;
+}
+
+/* La cuarta tarjeta tiene fondo azul; requiere texto blanco */
+.difference .advantage-card:nth-child(4) {
+  background: #0284C7 !important;
+  color: #FFFFFF !important;
+}
+
+.difference .advantage-card:nth-child(4) h3,
+.difference .advantage-card:nth-child(4) p {
+  color: #FFFFFF !important;
+}
+
+
+/* ========================================
+   HOVER PARA TODAS LAS BURBUJAS / TARJETAS
+   ======================================== */
+
+/* Tarjetas de "El modelo ALMA" */
+.advantage-card {
+  cursor: default;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    filter 0.28s ease,
+    border-color 0.28s ease !important;
+}
+
+.advantage-card:hover {
+  transform: translateY(-9px) scale(1.015);
+  box-shadow: 0 20px 38px rgba(6, 42, 66, 0.28);
+  filter: brightness(1.03);
+  border-color: #7DD3FC;
+}
+/* ========================================
+   LOGO: SOLO IMAGEN, SIN ICONO NI TEXTO
+   ======================================== */
+
+.brand.brand-logo {
+  display: flex;
+  align-items: center;
+  width: 180px;
+  height: 58px;
+  padding: 0;
+}
+
+.brand.brand-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* Evita que se muestre texto o el ícono anterior */
+.brand.brand-logo span,
+.brand.brand-logo .brand-mark {
+  display: none !important;
+}
+
+/* Tamaño del logo en celular */
+@media (max-width: 700px) {
+  .brand.brand-logo {
+    width: 145px;
+    height: 46px;
+  }
+} /* ========================================
+   COLORES UNIFICADOS: BURBUJAS MODELO ALMA
+   ======================================== */
+
+/* Burbuja 1: celeste muy claro */
+.difference .advantage-card:nth-child(1) {
+  color: #000000 !important;
+  background: #F8FAFC !important;
+  border: 1px solid #BAE6FD !important;
+}
+
+/* Burbuja 2: celeste claro */
+.difference .advantage-card:nth-child(2) {
+  color: #000000 !important;
+  background: #8dd1cd !important;
+  border: 1px solid #7DD3FC !important;
+}
+
+/* Burbuja 3: blanco/gris muy suave */
+.difference .advantage-card:nth-child(3) {
+  color: #000000 !important;
+  background: #a1bdfae5 !important;
+  border: 1px solid #CBD5E1 !important;
+}
+
+/* Burbuja 4: azul institucional */
+.difference .advantage-card:nth-child(4) {
+  color: #000000 !important;
+  background: #b8c2ce !important;
+  border: 1px solid #38BDF8 !important;
+}
+
+/* Texto para las primeras tres tarjetas claras */
+.difference .advantage-card:nth-child(1) h3,
+.difference .advantage-card:nth-child(2) h3,
+.difference .advantage-card:nth-child(3) h3 {
+  color: #034b61 !important;
+}
+
+.difference .advantage-card:nth-child(1) p,
+.difference .advantage-card:nth-child(2) p,
+.difference .advantage-card:nth-child(3) p {
+  color: #034b61 !important;
+}
+
+/* Texto blanco para la tarjeta azul */
+.difference .advantage-card:nth-child(4) h3,
+.difference .advantage-card:nth-child(4) p {
+  color: #034b61 !important;
+}
+
+/* Hover uniforme */
+.difference .advantage-card:hover {
+  box-shadow: 0 20px 38px rgba(6, 42, 66, 0.28);
+  border-color: #b7c7ce !important;
+  filter: brightness(1.03);
+}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+    <a class="brand brand-logo" href="#inicio" aria-label="Ir al inicio">
+  <img src="LOGO1.png" alt="ALMA Promed">
+</a>
+
+      <nav class="nav" id="mainMenu" aria-label="Navegación principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#modelo">Nuestro modelo</a>
+        <a href="#equipo">Equipo</a>
+        <a href="#faq">Preguntas</a>
+        <a href="#contacto">Contacto</a>
+        
+      </nav>
+
+      <button class="menu-button" id="menuButton" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainMenu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Administración médica remota</p>
+          <h1 class="hero-title">El soporte detrás de una <em>clínica</em> que crece.</h1>
+          <p class="hero-copy">ALMA Promed convierte la atención digital, la agenda y el seguimiento de pacientes en procesos claros, humanos y eficientes para su equipo médico.</p>
+          <div class="hero-actions">
+            <a class="button button-dark" href="https://wa.me/573026038351?text=Hola%2C%20quisiera%20conocer%20los%20servicios%20de%20ALMA%20Promed." target="_blank" rel="noopener noreferrer">Hablemos <span class="arrow">→</span></a>
+            <a class="button button-light" href="#servicios">Conozca nuestros servicios</a>
+          </div>
+        </div>
+
+        <div class="hero-image-card">
+          <!-- Reemplaza Asistente2.jpg con tu foto definitiva cuando esté disponible. -->
+          <img src="Asistente2.jpg" alt="Equipo de asistencia administrativa médica de ALMA Promed" width="1200" height="1400">
+          <div class="hero-image-label">Un equipo remoto que se integra a la experiencia de su clínica.</div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="trust-band" aria-label="Datos destacados de ALMA Promed">
+      <div class="container trust-items">
+        <div class="trust-item"><strong>Español / Inglés</strong><span>Atención bilingüe profesional</span></div>
+        <div class="trust-item"><strong>48-72h</strong><span>Confirmaciones y recordatorios de citas</span></div>
+        <div class="trust-item"><strong>Manejo de CRM</strong><span>Integración con sus herramientas</span></div>
+        <div class="trust-item"><strong>Adaptación rápida</strong><span>Nos acoplamos a su operación</span></div>
+      </div>
+    </aside>
+
+    <section class="section" id="servicios">
+      <div class="container section-grid">
+        <div class="section-intro">
+          <p class="eyebrow">Lo que hacemos</p>
+          <h2>Su práctica médica merece una operación impecable.</h2>
+          <p>Nos ocupamos del trabajo administrativo que requiere seguimiento, criterio y una comunicación excelente.</p>
+        </div>
+
+        <div class="services-list">
+          <article class="service-row">
+            <span class="service-number">01 /</span>
+            <div>
+              <h3>Atención por WhatsApp</h3>
+              <p>Respuestas oportunas y empáticas que convierten consultas en pacientes mejor informados y citas agendadas.</p>
+            </div>
+            <span class="round-arrow" aria-hidden="true">↗</span>
+          </article>
+          <article class="service-row">
+            <span class="service-number">02 /</span>
+            <div>
+              <h3>Agenda y confirmación de citas</h3>
+              <p>Coordinación, reprogramaciones y recordatorios para proteger el tiempo médico y reducir inasistencias.</p>
+            </div>
+            <span class="round-arrow" aria-hidden="true">↗</span>
+          </article>
+          <article class="service-row">
+            <span class="service-number">03 /</span>
+            <div>
+              <h3>Seguimiento y CRM</h3>
+              <p>Registro organizado de oportunidades, acompañamiento post-consulta y visibilidad sobre cada interacción.</p>
+            </div>
+            <span class="round-arrow" aria-hidden="true">↗</span>
+          </article>
+          <article class="service-row">
+            <span class="service-number">04 /</span>
+            <div>
+              <h3>Reportes operativos</h3>
+              <p>Información clara para entender volumen de consultas, conversión, motivos de contacto y oportunidades de mejora.</p>
+            </div>
+            <span class="round-arrow" aria-hidden="true">↗</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section difference" id="modelo">
+      <div class="container section-grid">
+        <div class="section-intro">
+          <p class="eyebrow">El modelo ALMA</p>
+          <h2>Operación eficiente y atención personalizada</h2>
+          <p>Su clínica obtiene una estructura de soporte remoto que complementa al personal presencial, sin interferir con sus procesos actuales.</p>
+        </div>
+
+        <div class="advantage-grid">
+          <article class="advantage-card">
+            <span class="advantage-icon" aria-hidden="true">◌</span>
+            <h3>Especialización médica</h3>
+            <p>Entendemos el lenguaje, ritmo y sensibilidad de las clínicas, consultorios y centros de estética.</p>
+          </article>
+          <article class="advantage-card">
+            <span class="advantage-icon" aria-hidden="true">↗</span>
+            <h3>Procesos a su medida</h3>
+            <p>Nos adaptamos a su agenda, protocolos, tono de marca y herramientas digitales existentes.</p>
+          </article>
+          <article class="advantage-card">
+            <span class="advantage-icon" aria-hidden="true">✓</span>
+            <h3>Seguimiento riguroso</h3>
+            <p>La continuidad de cada consulta y cada paciente deja de depender de tareas manuales dispersas.</p>
+          </article>
+          <article class="advantage-card">
+            <span class="advantage-icon" aria-hidden="true">✦</span>
+            <h3>Trato humano</h3>
+            <p>La tecnología organiza el flujo; nuestro equipo preserva la cercanía y la calidad humana.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="equipo">
+      <div class="container story-grid">
+<div class="story-image team-slider" id="teamSlider" aria-label="Galería del equipo ALMA Promed">
+
+  <div class="team-slider-track" id="teamSliderTrack">
+
+    <div class="team-slide">
+      <img
+        src="Asistente5.jpeg"
+        alt="Equipo de ALMA Promed"
+        width="1100"
+        height="1400"
+      >
+    </div>
+
+    <div class="team-slide">
+      <img
+        src="Asistente1.jpg"
+        alt="Asistencia administrativa para clínicas"
+        width="1100"
+        height="1400"
+        loading="lazy"
+      >
+    </div>
+
+    <div class="team-slide">
+      <img
+        src="Asistrente3.jpeg"
+        alt="Soporte administrativo remoto de ALMA Promed"
+        width="1100"
+        height="1400"
+        loading="lazy"
+      >
+    </div>
+
+    <div class="team-slide">
+      <img
+        src="Asistente4.jpeg"
+        alt="Atención profesional para consultorios médicos"
+        width="1100"
+        height="1400"
+        loading="lazy"
+      >
+    </div>
+
+  </div>
+
+  <button
+    class="team-slider-control team-slider-prev"
+    type="button"
+    aria-label="Imagen anterior"
+  >
+    ‹
+  </button>
+
+  <button
+    class="team-slider-control team-slider-next"
+    type="button"
+    aria-label="Imagen siguiente"
+  >
+    ›
+  </button>
+
+  <div class="team-slider-dots" aria-label="Seleccionar imagen">
+    <button class="team-slider-dot is-active" type="button" aria-label="Ver imagen 1"></button>
+    <button class="team-slider-dot" type="button" aria-label="Ver imagen 2"></button>
+    <button class="team-slider-dot" type="button" aria-label="Ver imagen 3"></button>
+    <button class="team-slider-dot" type="button" aria-label="Ver imagen 4"></button>
+  </div>
+
+</div>
+
+        <div class="story-copy">
+          <p class="eyebrow">Quiénes lideran ALMA Promed</p>
+          <h2>Talento que impulsa la excelencia</h2>
+          <p>ALMA Promed nació para que los profesionales de la salud puedan concentrarse en sus pacientes mientras un equipo especializado sostiene la parte administrativa de su práctica.</p>
+          <p>Combinamos experiencia en operaciones, servicio al cliente y gestión de clínicas para crear flujos de trabajo que realmente funcionan.</p>
+
+            <div class="leaders">
+
+            <div class="leader">
+              <img
+                src="aleskapfp.jpeg"
+                alt="Aleska Pacheco - Cofundadora y Líder Administrativa de ALMA Promed"
+                class="leader-photo"
+                width="300"
+                height="300"
+              >
+
+              <strong>Aleska Pacheco</strong>
+              <span>Cofundadora y Líder Administrativa</span>
+            </div>
+
+            <div class="leader">
+              <img
+                src="MAYBE PFP.jpeg"
+                alt="Maybelin Berrueta - Cofundadora y Líder de Operaciones de ALMA Promed"
+                class="leader-photo"
+                width="300"
+                height="300"
+              >
+
+              <strong>Maybelin Berrueta</strong>
+              <span>Cofundadora y Líder de Operaciones</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq-section" id="faq">
+  <div class="container section-grid">
+
+    <div class="section-intro">
+      <p class="eyebrow">Preguntas frecuentes</p>
+      <h2>Resolvemos sus dudas con claridad.</h2>
+      <p>
+        Conozca cómo funciona nuestro soporte administrativo remoto
+        para clínicas y profesionales de la salud.
+      </p>
+    </div>
+
+    <div class="faq-list">
+
+      <article class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>¿ALMA Promed reemplaza a mi asistente presencial?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            No. ALMA Promed funciona como un complemento estratégico
+            para su equipo sin sumar nuevas cargas de nómina. Gestionamos los canales digitales, agenda,
+            confirmaciones y seguimiento, mientras su personal presencial
+            puede enfocarse en la atención de pacientes dentro de la clínica.
+          </div>
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>¿Pueden trabajar con el CRM o software que ya utilizamos?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Sí. Adaptamos el flujo de trabajo a las herramientas de su clínica,
+            incluyendo Google Calendar, WhatsApp Business, Doctoralia, Kommo, 
+            Hulli, y otros sistemas de gestión médica.
+          </div>
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>¿Ofrecen atención en otros idiomas?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Sí. Contamos con planes de atención profesional en español e inglés, francès y/o italiano
+            especialmente útil para clínicas que reciben pacientes
+            internacionales o trabajan con turismo médico.
+          </div>
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>¿Cómo manejan la confidencialidad de la información?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Trabajamos con protocolos de confidencialidad y buenas prácticas
+            para el manejo de información sensible. El acceso a herramientas
+            y datos se limita al personal asignado a su cuenta.
+          </div>
+        </div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>¿Cuánto tarda el proceso de inicio?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            El proceso inicial suele tomar entre 3 y 5 días hábiles.
+            En ese período recopilamos información sobre especialidades,
+            horarios, servicios, preguntas frecuentes y protocolos de atención.
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+    
+    <section class="cta-wrap" id="contacto">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <p class="eyebrow" style="color:#fff4c9">Hagamos más simple su operación</p>
+            <h2>Su equipo médico atiende. ALMA Promed se encarga del resto.</h2>
+            <p>Agende una llamada breve para identificar oportunidades de mejora en su agenda, atención digital y seguimiento de pacientes.</p>
+            <a class="button button-light" href="https://wa.me/573026038351?text=Hola%2C%20quisiera%20agendar%20una%20llamada%20de%20diagnóstico%20con%20ALMA%20Promed." target="_blank" rel="noopener noreferrer">Agendar por WhatsApp <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2026 ALMA Promed. Gestión administrativa médica remota.</span>
+      <div class="footer-social">
+        <a href="mailto:alma.promed@gmail.com">Email</a>
+        <a href="https://instagram.com/alma.promed" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.getElementById('menuButton');
+    const mainMenu = document.getElementById('mainMenu');
+
+    menuButton.addEventListener('click', () => {
+      const open = mainMenu.classList.toggle('is-open');
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      menuButton.textContent = open ? '×' : '☰';
+    });
+
+    mainMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mainMenu.classList.remove('is-open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Abrir menú');
+        menuButton.textContent = '☰';
+      });
+    }); // FAQ ACCORDION
+const faqItems = document.querySelectorAll(".faq-item");
+
+faqItems.forEach((item) => {
+  const question = item.querySelector(".faq-question");
+
+  question.addEventListener("click", () => {
+    const isOpen = item.classList.contains("is-open");
+
+    // Cierra todas las preguntas antes de abrir otra
+    faqItems.forEach((otherItem) => {
+      otherItem.classList.remove("is-open");
+
+      const otherQuestion = otherItem.querySelector(".faq-question");
+      otherQuestion.setAttribute("aria-expanded", "false");
+    });
+
+    // Abre la pregunta seleccionada
+    if (!isOpen) {
+      item.classList.add("is-open");
+      question.setAttribute("aria-expanded", "true");
+    }
+  });
+}); /* ========================================
+   SLIDER DE IMÁGENES DEL EQUIPO
+   ======================================== */
+const teamSlider = document.getElementById("teamSlider");
+
+if (teamSlider) {
+  const teamTrack = document.getElementById("teamSliderTrack");
+  const teamSlides = teamSlider.querySelectorAll(".team-slide");
+  const teamDots = teamSlider.querySelectorAll(".team-slider-dot");
+  const teamPrevious = teamSlider.querySelector(".team-slider-prev");
+  const teamNext = teamSlider.querySelector(".team-slider-next");
+
+  let currentTeamSlide = 0;
+  let teamSliderTimer;
+
+  function showTeamSlide(index) {
+    currentTeamSlide =
+      (index + teamSlides.length) % teamSlides.length;
+
+    teamTrack.style.transform =
+      `translateX(-${currentTeamSlide * 100}%)`;
+
+    teamDots.forEach((dot, dotIndex) => {
+      dot.classList.toggle(
+        "is-active",
+        dotIndex === currentTeamSlide
+      );
+    });
+  }
+
+  function startTeamSlider() {
+    clearInterval(teamSliderTimer);
+
+    teamSliderTimer = setInterval(() => {
+      showTeamSlide(currentTeamSlide + 1);
+    }, 5000);
+  }
+
+  if (teamNext) {
+    teamNext.addEventListener("click", () => {
+      showTeamSlide(currentTeamSlide + 1);
+      startTeamSlider();
+    });
+  }
+
+  if (teamPrevious) {
+    teamPrevious.addEventListener("click", () => {
+      showTeamSlide(currentTeamSlide - 1);
+      startTeamSlider();
+    });
+  }
+
+  teamDots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      showTeamSlide(index);
+      startTeamSlider();
+    });
+  });
+
+  teamSlider.addEventListener("mouseenter", () => {
+    clearInterval(teamSliderTimer);
+  });
+
+  teamSlider.addEventListener("mouseleave", () => {
+    startTeamSlider();
+  });
+
+  showTeamSlide(0);
+  startTeamSlider();
+}
+  </script>
+</body>
+</html>
