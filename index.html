@@ -1847,7 +1847,62 @@ header {
         line-height: 1.45;
     }
 }
+/* Ajustes del logo y encabezado en celular */
+@media (max-width: 768px) {
+  .nav {
+    padding: 0.65rem 0;
+  }
 
+  .nav-inner {
+    gap: 0.75rem;
+  }
+
+  .logo {
+    gap: 0.45rem;
+    font-size: 1.05rem;
+    letter-spacing: -0.03em;
+  }
+
+  .logo-mark {
+    width: 30px;
+    height: 30px;
+  }
+
+  .logo-mark svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .nav-actions {
+    gap: 0.5rem;
+  }
+
+  .theme-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .mobile-toggle {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (max-width: 420px) {
+  .logo {
+    font-size: 0.95rem;
+  }
+
+  .logo-mark {
+    width: 26px;
+    height: 26px;
+  }
+
+  .logo-mark svg {
+    width: 14px;
+    height: 14px;
+  }
+}
 </style>
 </head>
 <body>
